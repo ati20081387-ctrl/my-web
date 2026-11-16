@@ -1,0 +1,147 @@
+/* Responsive adjustments */
+
+@media (max-width: 900px) {
+  .room-scene {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    padding: 12px;
+    padding-top: 60px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .kitchen-area {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 280px;
+  }
+
+  .window-area {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 280px;
+  }
+
+  .center-area {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-height: 200px;
+  }
+
+  .desk-area {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin: 10px auto;
+  }
+
+  .bookshelf {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .house-exterior {
+    width: min(360px, 95vw);
+    height: 420px;
+  }
+
+  .house-body {
+    width: 240px;
+    height: 220px;
+  }
+
+  .roof {
+    border-left-width: 145px;
+    border-right-width: 145px;
+    border-bottom-width: 90px;
+    bottom: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+  .room-scene {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .kitchen-area,
+  .window-area,
+  .center-area {
+    grid-column: 1;
+  }
+
+  .kitchen-area { grid-row: 1; }
+  .window-area { grid-row: 2; min-height: 220px; }
+  .center-area { grid-row: 3; }
+
+  .top-bar {
+    padding: 0 12px;
+  }
+
+  .top-bar .logo {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .section-view {
+    padding: 60px 12px 30px;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .player-card {
+    padding: 16px;
+  }
+
+  .house-exterior {
+    height: 380px;
+  }
+
+  .door {
+    width: 60px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .controls {
+    gap: 6px;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .room-scene {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  #exterior {
+    align-items: center;
+    padding-bottom: 0;
+  }
+
+  .house-exterior {
+    transform: scale(0.85);
+  }
+}
