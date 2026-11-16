@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="My Little Interactive Home – a cozy bilingual virtual home experience" />
+  <title>My Little Interactive Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body class="theme-light" data-view="exterior">
+
+  <!-- Global persistent audio (never recreated) -->
+  <audio id="global-audio" preload="metadata"></audio>
+
+  <!-- Top bar (visible after entering) -->
+  <header class="top-bar" id="top-bar" style="display:none;">
+    <div class="logo">🏠 <span data-i18n="livingRoom">Living Room</span></div>
+    <div class="controls">
+      <button class="btn btn-icon" id="theme-toggle" title="Night">🌙</button>
+      <button class="btn btn-icon" id="lang-toggle" title="Language">EN / فا</button>
+    </div>
+  </header>
+
+  <!-- ========== EXTERIOR ========== -->
+  <section id="exterior" class="view active" aria-label="House exterior">
+    <div class="house-exterior">
+      <div class="chimney"></div>
+      <div class="roof"></div>
+      <div class="house-body">
+        <div class="window-ext left"></div>
+        <div class="window-ext right"></div>
+        <div class="door-frame"></div>
+        <div class="door" id="front-door" role="button" tabindex="0" aria-label="Open front door" data-i18n-title="enterHome"></div>
+      </div>
+      <div class="plants-ext">
+        <div class="flower-pot"><div class="pot"></div><div class="flower"></div></div>
+        <div class="flower-pot"><div class="pot"></div><div class="flower" style="box-shadow: 8px 0 0 #ffeb3b, -8px 0 0 #e91e63, 0 -8px 0 #2196f3;"></div></div>
+      </div>
+      <div class="enter-hint" data-i18n="enterHome">Enter the Home</div>
+    </div>
+  </section>
+
+  <!-- ========== LIVING ROOM ========== -->
+  <section id="living-room" class="view" aria-label="Living room" aria-hidden="true">
+    <div class="room-container">
+      <div class="sunlight-overlay"></div>
+      <div class="room-scene">
+        <!-- Kitchen (always visible, left) -->
+        <div class="kitchen-area">
+          <div class="kitchen-label" data-i18n="kitchen">Kitchen</div>
+          <div class="cabinets">
+            <div class="cabinet"></div>
+            <div class="cabinet"></div>
+            <div class="cabinet"></div>
+            <div class="cabinet"></div>
+          </div>
+          <div class="stove" id="stove" role="button" tabindex="0" data-i18n-title="recipes" title="Recipes">
+            <div class="stove-burners">
+              <div class="burner"></div>
+              <div class="burner"></div>
+              <div class="burner"></div>
+              <div class="burner"></div>
+            </div>
+          </div>
+          <div class="fridge"></div>
+          <div class="sink"></div>
+          <div class="kitchen-window"></div>
+        </div>
+
+        <!-- Center -->
+        <div class="center-area">
+          <div class="sofa"></div>
+          <div class="rug"></div>
+          <div class="cat" aria-hidden="true">
+            <div class="cat-body">
+              <div class="cat-head">
+                <div class="cat-ear left"></div>
+                <div class="cat-ear right"></div>
+                <div class="cat-eye left"></div>
+                <div class="cat-eye right"></div>
+              </div>
+              <div class="cat-tail"></div>
+            </div>
+          </div>
+          <div class="plants-room">
+            <div class="plant"><div class="plant-pot"></div><div class="plant-leaf"></div></div>
+            <div class="plant"><div class="plant-pot"></div><div class="plant-leaf" style="animation-delay:1s;"></div></div>
+          </div>
+          <div class="desk-area" id="desk" role="button" tabindex="0" data-i18n-title="desk" title="Memory Desk"></div>
+        </div>
+
+        <!-- Window wall -->
+        <div class="window-area">
+          <div class="large-window">
+            <div class="city-view">
+              <div class="moon"></div>
+              <div class="buildings">
+                <div class="building"></div>
+                <div class="building"></div>
+                <div class="building"></div>
+                <div class="building"></div>
+                <div class="building"></div>
+              </div>
+            </div>
+          </div>
+          <div class="window-seat">
+            <div class="cushion"></div>
+            <div class="cushion"></div>
+            <div class="speaker" id="speaker" role="button" tabindex="0" data-i18n-title="speaker" title="Music"></div>
+            <div class="cushion"></div>
+          </div>
+          <div class="bookshelf" id="bookshelf" role="button" tabindex="0" data-i18n-title="bookshelf" title="Bookshelf">
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+            <div class="book"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RECIPES ========== -->
+  <section id="recipes-view" class="view section-view" aria-hidden="true">
+    <div class="section-header">
+      <h1 class="section-title" data-i18n="recipes">Recipe Collection</h1>
+      <button class="btn" data-back data-i18n="backToRoom">Back to Living Room</button>
+    </div>
+    <div class="section-content">
+      <input type="search" id="recipe-search" class="search-input" data-i18n="searchRecipes" placeholder="Search recipes..." />
+      <div class="filters">
+        <button class="filter-btn active" data-cat="all" data-i18n="allCategories">All Categories</button>
+        <button class="filter-btn" data-cat="cakes" data-i18n="cakes">Cakes</button>
+        <button class="filter-btn" data-cat="cookies" data-i18n="cookies">Cookies</button>
+        <button class="filter-btn" data-cat="chocolateDesserts" data-i18n="chocolateDesserts">Chocolate Desserts</button>
+        <button class="filter-btn" data-cat="creamyDesserts" data-i18n="creamyDesserts">Creamy Desserts</button>
+        <button class="filter-btn" data-cat="traditionalDesserts" data-i18n="traditionalDesserts">Traditional Desserts</button>
+        <button class="filter-btn" data-cat="frenchDesserts" data-i18n="frenchDesserts">French Desserts</button>
+      </div>
+      <div id="recipe-grid" class="recipe-grid"></div>
+    </div>
+  </section>
+
+  <!-- Recipe Detail -->
+  <section id="recipe-detail-view" class="view section-view" aria-hidden="true">
+    <div class="section-header">
+      <h1 class="section-title" data-i18n="recipes">Recipe</h1>
+      <div>
+        <button class="btn" id="back-to-recipes" data-i18n="backToRecipes">Back to Recipes</button>
+        <button class="btn" data-back data-i18n="backToRoom">Back to Living Room</button>
+      </div>
+    </div>
+    <div class="section-content" id="recipe-detail-content"></div>
+  </section>
+
+  <!-- ========== MEMORIES ========== -->
+  <section id="memories-view" class="view section-view" aria-hidden="true">
+    <div class="section-header">
+      <h1 class="section-title" data-i18n="memoryJournal">Personal Memory Journal</h1>
+      <button class="btn" data-back data-i18n="backToRoom">Back to Living Room</button>
+    </div>
+    <div class="section-content">
+      <div class="tabs">
+        <button class="tab active" data-tab-group="memory" data-tab="journal" data-i18n="memoryJournal">Personal Memory Journal</button>
+        <button class="tab" data-tab-group="memory" data-tab="notes" data-i18n="anonymousNotes">Anonymous Notes</button>
+      </div>
+
+      <div id="journal-panel">
+        <form id="memory-form" class="form-card">
+          <div class="form-group">
+            <label data-i18n="title">Title</label>
+            <input type="text" id="mem-title" required />
+          </div>
+          <div class="form-group">
+            <label data-i18n="content">Content</label>
+            <textarea id="mem-content" required></textarea>
+          </div>
+          <div class="form-group">
+            <label data-i18n="addPhoto">Add Photo</label>
+            <input type="file" id="mem-photo" accept="image/*" />
+          </div>
+          <button type="submit" class="btn btn-primary" data-i18n="save">Save</button>
+        </form>
+        <div id="memory-list" class="memory-list"></div>
+      </div>
+
+      <div id="notes-panel" class="hidden">
+        <form id="note-form" class="form-card">
+          <div class="form-group">
+            <label data-i18n="content">Content</label>
+            <textarea id="note-content" required placeholder="Write anonymously..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" data-i18n="save">Save</button>
+        </form>
+        <div id="note-list" class="note-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MUSIC ========== -->
+  <section id="music-view" class="view section-view" aria-hidden="true">
+    <div class="section-header">
+      <h1 class="section-title" data-i18n="musicPlayer">Music Corner</h1>
+      <button class="btn" data-back data-i18n="backToRoom">Back to Living Room</button>
+    </div>
+    <div class="section-content">
+      <div class="player-card">
+        <div class="now-playing" id="now-playing" data-i18n="noSongs">Upload your favorite songs to start listening</div>
+        <div class="player-controls">
+          <button id="prev-btn" title="Previous">⏮</button>
+          <button id="play-btn" class="play-btn" title="Play">▶</button>
+          <button id="next-btn" title="Next">⏭</button>
+        </div>
+        <div class="volume-control">
+          <span data-i18n="volume">Volume</span>
+          <input type="range" id="volume" min="0" max="1" step="0.01" value="0.7" />
+        </div>
+        <div style="margin-top:16px;">
+          <label class="btn">
+            <span data-i18n="uploadAudio">Upload Audio File</span>
+            <input type="file" id="audio-upload" accept="audio/*" multiple hidden />
+          </label>
+        </div>
+      </div>
+      <div id="track-list" class="track-list"></div>
+    </div>
+  </section>
+
+  <!-- ========== LIBRARY ========== -->
+  <section id="library-view" class="view section-view" aria-hidden="true">
+    <div class="section-header">
+      <h1 class="section-title" data-i18n="digitalLibrary">Digital Library</h1>
+      <button class="btn" data-back data-i18n="backToRoom">Back to Living Room</button>
+    </div>
+    <div class="section-content">
+      <div class="tabs">
+        <button class="tab active" data-tab-group="library" data-tab="mybooks" data-i18n="myBooks">My Books</button>
+        <button class="tab" data-tab-group="library" data-tab="discover" data-i18n="discover">Discover Books</button>
+      </div>
+
+      <div id="mybooks-panel">
+        <div style="margin-bottom:16px;">
+          <label class="btn btn-primary">
+            <span data-i18n="uploadPDF">Upload PDF</span>
+            <input type="file" id="pdf-upload" accept="application/pdf" hidden />
+          </label>
+        </div>
+        <div id="mybooks-grid" class="book-grid"></div>
+      </div>
+
+      <div id="discover-panel" class="hidden">
+        <div id="discover-grid" class="book-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="js/app.js"></script>
+  <script>
+    // Show top bar when in living room or sections
+    document.addEventListener('viewChanged', (e) => {
+      const bar = document.getElementById('top-bar');
+      if (e.detail.view === 'exterior') {
+        bar.style.display = 'none';
+      } else {
+        bar.style.display = 'flex';
+      }
+    });
+
+    // Back to recipes from detail
+    document.getElementById('back-to-recipes')?.addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('navigateRecipes'));
+    });
+  </script>
+  <script type="module">
+    import { navigateTo } from './js/navigation.js';
+    document.getElementById('back-to-recipes')?.addEventListener('click', () => navigateTo('recipes'));
+  </script>
+</body>
+</html>
